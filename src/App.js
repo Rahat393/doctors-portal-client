@@ -1,14 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './Routes/Routes';
 
 function App() {
   return (
-    <div className="App">
-      <h2>hello world</h2>
-      <button className="btn btn-info">Info</button>
-      <button className="btn btn-success">Success</button>
-      <button className="btn btn-warning">Warning</button>
-      <button className="btn btn-error">Error</button>
+    <div className='max-w-screen-xl  mx-auto'  >
+      <RouterProvider router={router}></RouterProvider>
     </div>
   );
 }
