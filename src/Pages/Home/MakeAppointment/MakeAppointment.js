@@ -5,7 +5,7 @@ import BtnPrimary from '../../../Components/BtnPrimary';
 
 const MakeAppointment = () => {
     return (
-        <section className='my-40 rounded'
+        <section className='mt-40 mb-35 rounded'
             style={{ backgroundImage: `url(${appointment})` }}>
             <div className="hero   text-white ">
                 <div className="hero-content flex-col lg:flex-row">
