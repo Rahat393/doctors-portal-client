@@ -1,9 +1,31 @@
 import { format } from "date-fns";
 import React from "react";
 
-const BookingModal = ({ treatment, selectedDate }) => {
-  const { name, slots } = treatment;
+const BookingModal = ({ treatment, selectedDate, setTreatment }) => {
+  const { name: treatmentName, slots, price } = treatment;
   const date = format(selectedDate, "PP");
+
+  const handleBooking = event => {
+    event.preventDefault();
+    const form = event.target;
+    const slot = form.slot.value;
+    const name = form.name.value;
+    const email = form.email.value;
+    const phone = form.phone.value;
+
+    const booking = {
+      appointmentDate: date,
+      treatment: treatmentName,
+      patient: name,
+      slot,
+      email,
+      phone,
+       
+    }
+    console.log(booking);
+    setTreatment(null)
+  }
+
   return (
     <>
       <input type="checkbox" id="booking-Modal" className="modal-toggle" />
@@ -15,8 +37,8 @@ const BookingModal = ({ treatment, selectedDate }) => {
           >
             ✕
           </label>
-          <h3 className="text-lg font-bold">{name}</h3>
-          <form className="grid gap-5 grid-cols-1 mt-10">
+          <h3 className="text-lg font-bold">{treatmentName}</h3>
+          <form onSubmit={handleBooking} className="grid gap-5 grid-cols-1 mt-10">
             <input name="text" disabled value={date} className="input  " />
             <select name="slot" className="select select-bordered w-full  ">
               {slots?.map((slot, i) => (
@@ -25,8 +47,8 @@ const BookingModal = ({ treatment, selectedDate }) => {
                 </option>
               ))}
             </select>
-            {/* <input name="name" type='text' defaultValue={user?.displayName} readOnly placeholder="Your name" className="input input-bordered " />
-                        <input name="email" type='email' defaultValue={user?.email} readOnly placeholder="Email Address" className="input input-bordered " /> */}
+            <input name="name" type='text'     placeholder="Your name" className="input input-bordered " />
+                        <input name="email" type='email'     placeholder="Email Address" className="input input-bordered " />
             <input
               name="phone"
               type="text"
