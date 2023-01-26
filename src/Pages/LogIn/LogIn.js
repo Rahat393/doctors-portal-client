@@ -1,23 +1,46 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React from 'react';
 import   { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 
 const LogIn = () => {
-    const {signIn} = useContext(AuthContext)
+    const {signIn, providerLogin} = useContext(AuthContext)
   const { register, formState: { errors }, handleSubmit } = useForm();
   const [loginError, setLoginError] = useState('');
+  
   const navigate = useNavigate()
+  const location = useLocation()
+
+  const from = location.state?.from?.pathname || '/'
+
+  const googleProvider = new GoogleAuthProvider()
+  const handleGoogleSignIn = () => {
+    providerLogin(googleProvider)
+    .then(result => {
+        const user = result.user
+        console.log(user);
+        navigate(from, {replace: true}) 
+    })
+    .catch(err => {
+        console.log(err);
+    })
+  }
 
   const handleLogin = data => {
+    setLoginError('')
     signIn(data.email, data.password)
     .then(result => {
         console.log(result);
-        navigate('/')
+        navigate(from, {replace: true})
     })
-    .catch(err => console.log(err))
-      console.log(data);
+    .catch(error => {
+        console.log(error)
+        setLoginError(error.message)
+    })
+     
+   
   }
   return (
     <div className='h-[650px]   mx-auto flex justify-center items-center'>
@@ -38,7 +61,7 @@ const LogIn = () => {
                         <input type="password"
                             {...register("password", {
                                 required: "Password is required",
-                                minLength: { value: 6, message: 'Password must be 6 characters or longer' }
+                                // minLength: { value: 6, message: 'Password must be 6 characters or longer' }
                             })}
                             className="input input-bordered w-full max-w-xs" />
                         <label className="label"> <span className="label-text">Forget Password?</span></label>
@@ -51,7 +74,7 @@ const LogIn = () => {
                 </form>
                 <p>New to Doctors Portal <Link className='text-secondary' to="/signup">Create new Account</Link></p>
                 <div className="divider">OR</div>
-                <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+                <button onClick={handleGoogleSignIn} className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
             </div>
         </div>
   );
