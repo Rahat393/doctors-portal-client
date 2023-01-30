@@ -15,18 +15,19 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const handleSignUp = (data) => {
+    setSignUPError("")
     createUser(data.email, data.password)
       .then((result) => {
         const user = result.user;
         toast.success("User Create Successfully");
-        navigate("/");
+        // navigate("/");
         console.log(user);
         const userInfo = {
           displayName: data.name,
         };
         updateUser(userInfo)
           .then(() => {
-            navigate("/");
+            saveUserToDatabase(data.name, data.email)
           })
           .then((err) => console.log(err));
       })
@@ -35,6 +36,22 @@ const SignUp = () => {
         setSignUPError(err.message);
       });
   };
+
+  const saveUserToDatabase = (name, email) => {
+    const user = {name, email};
+    fetch('http://localhost:5000/users', {
+      method: 'POST',
+      headers: {
+        'content-type' :'application/json'
+      },
+      body:JSON.stringify(user)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data);
+      navigate("/");
+    })
+  }
 
   return (
     <div className="h-[800px] flex justify-center items-center">
