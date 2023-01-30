@@ -18,6 +18,7 @@ const DashboardLayout = () => {
     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
        
        <li ><Link className="text-xl" to={'/dashboard'}>My Appointment</Link></li>
+       <li ><Link className="text-xl" to={'/dashboard/allusers'}>All Users</Link></li>
         
     </ul>
   
