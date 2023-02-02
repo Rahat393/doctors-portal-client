@@ -3,6 +3,7 @@ import React from 'react';
 import { toast } from 'react-hot-toast';
 
 const AllUsers = () => {
+
   const {data : users = [], refetch} = useQuery({
     queryKey: ['users'],
     queryFn: async () => {
@@ -30,6 +31,7 @@ const AllUsers = () => {
   }
   return (
     <div className="overflow-x-auto">
+      <h2 className='text-3xl mb-7'>All Users</h2>
   <table className="table table-zebra w-full">
      
     <thead>

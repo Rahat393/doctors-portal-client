@@ -25,6 +25,7 @@ const BookingModal = ({ treatment, selectedDate, setTreatment, refetch }) => {
       slot,
       email,
       phone,
+      price
     };
 
     fetch("http://localhost:5000/bookings", {

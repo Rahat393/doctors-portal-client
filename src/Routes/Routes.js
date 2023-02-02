@@ -2,10 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Main from "../Layouts/Main";
 import Appointment from "../Pages/Appointment/Appointment";
+import AddDoctor from "../Pages/Dashboard/AddDoctor/AddDoctor";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
-import Dashboard from "../Pages/Dashboard/Dashboard/Dashboard";
-import MyAppointment from "../Pages/Dashboard/MyAppointment/MyAppointment";
+ import MyAppointment from "../Pages/Dashboard/MyAppointment/MyAppointment";
+import Payment from "../Pages/Dashboard/Payment/Payment";
 import Home from "../Pages/Home/Home";
+import DisplayError from "../Pages/Home/Shared/DisplayError/DisplayError";
 import LogIn from "../Pages/LogIn/LogIn";
 import SignUp from "../Pages/SignUp/SignUp";
 import AdminRoute from "./AdminRoute/AdminRoute";
@@ -14,6 +16,7 @@ import AdminRoute from "./AdminRoute/AdminRoute";
 export const router = createBrowserRouter([
   {
     path: "/",
+    errorElement: <DisplayError></DisplayError>,
     element: <Main></Main>,
     children: [
       {
@@ -41,6 +44,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
+    errorElement: <DisplayError></DisplayError>,
     element: (
       <PrivateRoute>
         {" "}
@@ -55,6 +59,15 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/allusers",
         element:   <AdminRoute><AllUsers></AllUsers></AdminRoute> ,
+      },
+      {
+        path: "/dashboard/addadoctor",
+        element:   <AdminRoute> <AddDoctor></AddDoctor></AdminRoute> ,
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element:   <AdminRoute>  <Payment></Payment></AdminRoute> ,
+        loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
       },
     ],
   },

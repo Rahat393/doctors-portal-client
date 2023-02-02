@@ -9,7 +9,7 @@ const AdminRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const [isAdmin, isAdminLoading] = useAdmin(user?.email)
   const location = useLocation();
-  // class="flex justify-center items-center"
+  // className="flex justify-center items-center"
 
   if (loading || isAdminLoading) {
     return <Loading></Loading>;

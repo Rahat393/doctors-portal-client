@@ -7,7 +7,7 @@ import Loading from "../../Pages/Home/Shared/Loading/Loading";
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const location = useLocation();
-  // class="flex justify-center items-center"
+  // className="flex justify-center items-center"
 
   if (loading) {
     return <Loading></Loading>;
