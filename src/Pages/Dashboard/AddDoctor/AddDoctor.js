@@ -12,7 +12,7 @@ const AddDoctor = () => {
      const image = data.image[0];
      const formData = new FormData()
      formData.append('image', image)
-
+    console.log(data);
   }
 
   const {data: specialties = [], isLoading} = useQuery({

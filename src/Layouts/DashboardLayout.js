@@ -1,5 +1,6 @@
 import React from "react";
 import { useContext } from "react";
+import Skeleton from "react-loading-skeleton";
 import { Link, Outlet } from "react-router-dom";
 import { AuthContext } from "../Contexts/AuthProvider";
 import useAdmin from "../hooks/useAdmin";
@@ -14,7 +15,7 @@ const DashboardLayout = () => {
       <div className="drawer drawer-mobile">
   <input id="dashboard-drawer" type="checkbox" className="drawer-toggle" />
   <div className="drawer-content  ">
-     <Outlet></Outlet>
+     {<Outlet></Outlet> || <Skeleton count={10}></Skeleton>}
      
   
   </div> 

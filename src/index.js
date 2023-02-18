@@ -6,11 +6,13 @@ import reportWebVitals from "./reportWebVitals";
 import "react-day-picker/dist/style.css";
 import AuthProvider from "./Contexts/AuthProvider";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { SkeletonTheme } from "react-loading-skeleton";
 
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
+  <SkeletonTheme baseColor="back" highlightColor="#444">
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
@@ -18,6 +20,7 @@ root.render(
       </AuthProvider>
     </QueryClientProvider>
   </React.StrictMode>
+  </SkeletonTheme>
 );
 
 // If you want to start measuring performance in your app, pass a function
