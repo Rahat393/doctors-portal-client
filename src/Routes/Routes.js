@@ -1,9 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../Layouts/DashboardLayout";
 import Main from "../Layouts/Main";
+import About from "../Pages/About/About";
 import Appointment from "../Pages/Appointment/Appointment";
 import AddDoctor from "../Pages/Dashboard/AddDoctor/AddDoctor";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import ManageDoctor from "../Pages/Dashboard/ManageDoctor/ManageDoctor";
  import MyAppointment from "../Pages/Dashboard/MyAppointment/MyAppointment";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import Home from "../Pages/Home/Home";
@@ -28,6 +30,10 @@ export const router = createBrowserRouter([
         element: <LogIn></LogIn>,
       },
       {
+        path: "about",
+        element: <About></About>,
+      },
+      {
         path: "signup",
         element: <SignUp></SignUp>,
       },
@@ -45,12 +51,12 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     errorElement: <DisplayError></DisplayError>,
-    element: (
+    element: 
       <PrivateRoute>
-        {" "}
+         
         <DashboardLayout></DashboardLayout>
       </PrivateRoute>
-    ),
+    ,
     children: [
       {
         path: "/dashboard",
@@ -63,6 +69,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/addadoctor",
         element:   <AdminRoute> <AddDoctor></AddDoctor></AdminRoute> ,
+      },
+      {
+        path: "/dashboard/managedoctors",
+        element:   <AdminRoute>  <ManageDoctor></ManageDoctor></AdminRoute> ,
       },
       {
         path: "/dashboard/payment/:id",
