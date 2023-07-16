@@ -7,6 +7,7 @@ import Loading from '../../Home/Shared/Loading/Loading';
 const MyAppointment = () => {
   
   const {user} = useContext(AuthContext)
+  console.log(user.email);
  
   const url = `http://localhost:5000/bookings?email=${user?.email}`
   const {data : bookings = [], isLoading} = useQuery({

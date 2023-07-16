@@ -3,12 +3,15 @@ import React from "react";
 import { useContext } from "react";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../../Contexts/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const BookingModal = ({ treatment, selectedDate, setTreatment, refetch }) => {
   const { name: treatmentName, slots, price } = treatment;
   const date = format(selectedDate, "PP");
 
   const { user } = useContext(AuthContext);
+
+  const navigate = useNavigate()
 
   const handleBooking = (event) => {
     event.preventDefault();
@@ -42,6 +45,7 @@ const BookingModal = ({ treatment, selectedDate, setTreatment, refetch }) => {
           setTreatment(null);
           toast.success("Booking Confirmed");
           refetch();
+          navigate('/dashboard')
         } else {
           toast.error(data.message);
           // setTreatment(null);

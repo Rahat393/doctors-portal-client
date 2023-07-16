@@ -89,7 +89,7 @@ const ManageDoctor = () => {
             {
               deletingDoctor && <ConfirmationModal 
               title={'Are you sure you want to delete?'}
-               message={`If you delete doctor {${deletingDoctor.name} ? <span style={{ color: 'red' }}>{eachCustomer.email}</span> : null}. You can't be undone !!`}
+               message={`If you delete doctor ${deletingDoctor.name}   You can't be undone !!`}
               
               successAtion={handleDeleteDoctor}
               modalData={deletingDoctor}

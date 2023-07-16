@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { Button } from 'react-day-picker';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../Contexts/AuthProvider';
+import './Navbar.css'
 
 const Navbar = () => {
 
@@ -14,7 +15,7 @@ const Navbar = () => {
          .catch(err => console.log(err))
     }
 
-    const menuItem = <React.Fragment>
+    const menuItem = <React.Fragment  >
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/about'>About</Link></li>
         <li><Link to='/appointment'>Appoinment</Link></li>
@@ -48,7 +49,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <label tabIndex={2} htmlFor="dashboard-drawer" className="btn btn-ghost lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5  " fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </label>
             </div>
             
